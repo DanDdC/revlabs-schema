@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "app": {
+    "name": "revlabs-telemetry",
+    "version": "0.1.0",
+    "parser_version": "gt7-v1"
+  },
+  "created_at": "2026-11-19T14:00:00Z",
+  "session": {
+    "game": "gt7",
+    "mode": "race",
+    "started_at": "2026-11-19T13:00:00Z",
+    "ended_at": "2026-11-19T13:30:00Z",
+    "car": {
+      "game_car_id": 3485,
+      "name": "Mercedes-AMG GT Black Series '20"
+    },
+    "track": {
+      "game_track_id": 152,
+      "name": "Autódromo José Carlos Pace (Interlagos)",
+      "length_m": 4309
+    },
+    "conditions": {
+      "air_temp_c": 28.0,
+      "track_temp_c": 38.0,
+      "weather": "dry"
+    },
+    "rules": {
+      "tire_wear_enabled": true,
+      "tire_wear_multiplier": 2.0,
+      "fuel_consumption_enabled": true,
+      "fuel_consumption_multiplier": 2.0
+    },
+    "tire": {
+      "compound": "Racing Medium",
+      "age_laps_start": 0
+    },
+    "fuel": {
+      "start_l": 60.0,
+      "density_kg_l": 0.75
+    }
+  },
+  "laps": [
+    {
+      "number": 1,
+      "lap_time_ms": 101500,
+      "sectors_ms": [30000, 43000, 28500],
+      "is_outlap": true,
+      "is_inlap": false,
+      "is_valid": false,
+      "invalid_reason": "outlap",
+      "external_id": "race-demo-lap-1",
+      "tire": { "age_laps": 0, "wear_pct_start": 0, "wear_pct_end": 1 },
+      "fuel": { "start_l": 60.0, "end_l": 57.5, "used_l": 2.5 }
+    },
+    {
+      "number": 2,
+      "lap_time_ms": 100900,
+      "sectors_ms": [29700, 42800, 28400],
+      "is_outlap": false,
+      "is_inlap": false,
+      "is_valid": true,
+      "external_id": "race-demo-lap-2",
+      "tire": { "age_laps": 1, "wear_pct_start": 1, "wear_pct_end": 2 },
+      "fuel": { "start_l": 57.5, "end_l": 55.0, "used_l": 2.5 }
+    }
+  ]
+}

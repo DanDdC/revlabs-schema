@@ -1,0 +1,1191 @@
+{
+  "$defs": {
+    "AppInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "version": {
+          "maxLength": 50,
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        },
+        "parser_version": {
+          "maxLength": 50,
+          "minLength": 1,
+          "title": "Parser Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "parser_version"
+      ],
+      "title": "AppInfo",
+      "type": "object"
+    },
+    "CarRef": {
+      "additionalProperties": false,
+      "properties": {
+        "game_car_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "ID do carro no jogo",
+          "title": "Game Car Id"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "category": {
+          "anyOf": [
+            {
+              "maxLength": 100,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Category"
+        }
+      },
+      "required": [
+        "game_car_id"
+      ],
+      "title": "CarRef",
+      "type": "object"
+    },
+    "Conditions": {
+      "additionalProperties": false,
+      "properties": {
+        "air_temp_c": {
+          "anyOf": [
+            {
+              "maximum": 70,
+              "minimum": -50,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Air Temp C"
+        },
+        "track_temp_c": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": -50,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Track Temp C"
+        },
+        "weather": {
+          "default": "unknown",
+          "enum": [
+            "dry",
+            "wet",
+            "mixed",
+            "unknown"
+          ],
+          "title": "Weather",
+          "type": "string"
+        },
+        "track_wetness_pct": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Track Wetness Pct"
+        },
+        "time_of_day": {
+          "anyOf": [
+            {
+              "maxLength": 50,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Time Of Day"
+        }
+      },
+      "title": "Conditions",
+      "type": "object"
+    },
+    "Frame": {
+      "additionalProperties": false,
+      "properties": {
+        "seq": {
+          "minimum": 0,
+          "title": "Seq",
+          "type": "integer"
+        },
+        "ts": {
+          "description": "Timestamp em segundos",
+          "minimum": 0,
+          "title": "Ts",
+          "type": "number"
+        },
+        "speed_mps": {
+          "minimum": 0,
+          "title": "Speed Mps",
+          "type": "number"
+        },
+        "throttle": {
+          "maximum": 255,
+          "minimum": 0,
+          "title": "Throttle",
+          "type": "number"
+        },
+        "brake": {
+          "maximum": 255,
+          "minimum": 0,
+          "title": "Brake",
+          "type": "number"
+        },
+        "engine_rpm": {
+          "minimum": 0,
+          "title": "Engine Rpm",
+          "type": "number"
+        },
+        "gear": {
+          "maximum": 20,
+          "minimum": -1,
+          "title": "Gear",
+          "type": "integer"
+        },
+        "position_x": {
+          "title": "Position X",
+          "type": "number"
+        },
+        "position_y": {
+          "title": "Position Y",
+          "type": "number"
+        },
+        "position_z": {
+          "title": "Position Z",
+          "type": "number"
+        },
+        "velocity_x": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Velocity X"
+        },
+        "velocity_y": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Velocity Y"
+        },
+        "velocity_z": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Velocity Z"
+        },
+        "tire_temp_fl": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tire Temp Fl"
+        },
+        "tire_temp_fr": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tire Temp Fr"
+        },
+        "tire_temp_rl": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tire Temp Rl"
+        },
+        "tire_temp_rr": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tire Temp Rr"
+        },
+        "suspension_fl": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Suspension Fl"
+        },
+        "suspension_fr": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Suspension Fr"
+        },
+        "suspension_rl": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Suspension Rl"
+        },
+        "suspension_rr": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Suspension Rr"
+        },
+        "fuel_level_l": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fuel Level L"
+        },
+        "steering": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Steering"
+        }
+      },
+      "required": [
+        "seq",
+        "ts",
+        "speed_mps",
+        "throttle",
+        "brake",
+        "engine_rpm",
+        "gear",
+        "position_x",
+        "position_y",
+        "position_z"
+      ],
+      "title": "Frame",
+      "type": "object"
+    },
+    "FuelState": {
+      "additionalProperties": false,
+      "properties": {
+        "start_l": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start L"
+        },
+        "capacity_l": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Capacity L"
+        },
+        "density_kg_l": {
+          "default": 0.75,
+          "exclusiveMinimum": 0,
+          "maximum": 1.5,
+          "title": "Density Kg L",
+          "type": "number"
+        }
+      },
+      "title": "FuelState",
+      "type": "object"
+    },
+    "Lap": {
+      "additionalProperties": false,
+      "properties": {
+        "number": {
+          "minimum": 0,
+          "title": "Number",
+          "type": "integer"
+        },
+        "lap_time_ms": {
+          "exclusiveMinimum": 0,
+          "title": "Lap Time Ms",
+          "type": "integer"
+        },
+        "sectors_ms": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "maxItems": 3,
+              "minItems": 3,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sectors Ms"
+        },
+        "started_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Started At"
+        },
+        "is_outlap": {
+          "default": false,
+          "title": "Is Outlap",
+          "type": "boolean"
+        },
+        "is_inlap": {
+          "default": false,
+          "title": "Is Inlap",
+          "type": "boolean"
+        },
+        "is_valid": {
+          "default": true,
+          "title": "Is Valid",
+          "type": "boolean"
+        },
+        "invalid_reason": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Invalid Reason"
+        },
+        "external_id": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "External Id"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        },
+        "tire": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LapTire"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "fuel": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LapFuel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "conditions": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Conditions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "stats": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LapStats"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "frames": {
+          "items": {
+            "$ref": "#/$defs/Frame"
+          },
+          "title": "Frames",
+          "type": "array"
+        }
+      },
+      "required": [
+        "number",
+        "lap_time_ms"
+      ],
+      "title": "Lap",
+      "type": "object"
+    },
+    "LapFuel": {
+      "additionalProperties": false,
+      "properties": {
+        "start_l": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start L"
+        },
+        "end_l": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End L"
+        },
+        "used_l": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Used L"
+        }
+      },
+      "title": "LapFuel",
+      "type": "object"
+    },
+    "LapStats": {
+      "additionalProperties": false,
+      "properties": {
+        "max_speed_kmh": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Speed Kmh"
+        },
+        "min_speed_kmh": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Min Speed Kmh"
+        },
+        "avg_speed_kmh": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Avg Speed Kmh"
+        },
+        "avg_throttle_pct": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Avg Throttle Pct"
+        },
+        "avg_brake_pct": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Avg Brake Pct"
+        },
+        "max_rpm": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Rpm"
+        },
+        "total_frames": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Total Frames"
+        }
+      },
+      "title": "LapStats",
+      "type": "object"
+    },
+    "LapTire": {
+      "additionalProperties": false,
+      "properties": {
+        "age_laps": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Age Laps"
+        },
+        "wear_pct_start": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wear Pct Start"
+        },
+        "wear_pct_end": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wear Pct End"
+        }
+      },
+      "title": "LapTire",
+      "type": "object"
+    },
+    "OtherCar": {
+      "additionalProperties": false,
+      "properties": {
+        "external_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "External Id",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "game_car_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "default": null,
+          "title": "Game Car Id"
+        },
+        "positions": {
+          "items": {
+            "$ref": "#/$defs/PositionSample"
+          },
+          "title": "Positions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "external_id"
+      ],
+      "title": "OtherCar",
+      "type": "object"
+    },
+    "PositionSample": {
+      "additionalProperties": false,
+      "properties": {
+        "ts": {
+          "minimum": 0,
+          "title": "Ts",
+          "type": "number"
+        },
+        "position_x": {
+          "title": "Position X",
+          "type": "number"
+        },
+        "position_z": {
+          "title": "Position Z",
+          "type": "number"
+        },
+        "lap_distance_m": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lap Distance M"
+        }
+      },
+      "required": [
+        "ts",
+        "position_x",
+        "position_z"
+      ],
+      "title": "PositionSample",
+      "type": "object"
+    },
+    "Rules": {
+      "additionalProperties": false,
+      "properties": {
+        "tire_wear_enabled": {
+          "default": false,
+          "title": "Tire Wear Enabled",
+          "type": "boolean"
+        },
+        "tire_wear_multiplier": {
+          "default": 1.0,
+          "maximum": 20,
+          "minimum": 0,
+          "title": "Tire Wear Multiplier",
+          "type": "number"
+        },
+        "fuel_consumption_enabled": {
+          "default": false,
+          "title": "Fuel Consumption Enabled",
+          "type": "boolean"
+        },
+        "fuel_consumption_multiplier": {
+          "default": 1.0,
+          "maximum": 20,
+          "minimum": 0,
+          "title": "Fuel Consumption Multiplier",
+          "type": "number"
+        },
+        "bop_enabled": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bop Enabled"
+        },
+        "tuning_allowed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tuning Allowed"
+        },
+        "pp_limit": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pp Limit"
+        }
+      },
+      "title": "Rules",
+      "type": "object"
+    },
+    "Session": {
+      "additionalProperties": false,
+      "properties": {
+        "game": {
+          "enum": [
+            "gt7",
+            "ac",
+            "other"
+          ],
+          "title": "Game",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "hotlap",
+            "practice",
+            "race"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "started_at": {
+          "format": "date-time",
+          "title": "Started At",
+          "type": "string"
+        },
+        "ended_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ended At"
+        },
+        "car": {
+          "$ref": "#/$defs/CarRef"
+        },
+        "track": {
+          "$ref": "#/$defs/TrackRef"
+        },
+        "setup_id": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Setup Id"
+        },
+        "setup_hash": {
+          "anyOf": [
+            {
+              "maxLength": 64,
+              "minLength": 64,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Setup Hash"
+        },
+        "conditions": {
+          "$ref": "#/$defs/Conditions"
+        },
+        "rules": {
+          "$ref": "#/$defs/Rules"
+        },
+        "tire": {
+          "$ref": "#/$defs/TireState"
+        },
+        "fuel": {
+          "$ref": "#/$defs/FuelState"
+        },
+        "assists": {
+          "additionalProperties": {
+            "type": "boolean"
+          },
+          "title": "Assists",
+          "type": "object"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        },
+        "other_cars": {
+          "items": {
+            "$ref": "#/$defs/OtherCar"
+          },
+          "title": "Other Cars",
+          "type": "array"
+        }
+      },
+      "required": [
+        "game",
+        "mode",
+        "started_at",
+        "car",
+        "track"
+      ],
+      "title": "Session",
+      "type": "object"
+    },
+    "TireState": {
+      "additionalProperties": false,
+      "properties": {
+        "compound": {
+          "anyOf": [
+            {
+              "maxLength": 100,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Compound"
+        },
+        "age_laps_start": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Age Laps Start",
+          "type": "integer"
+        },
+        "wear_pct_start": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wear Pct Start"
+        }
+      },
+      "title": "TireState",
+      "type": "object"
+    },
+    "TrackRef": {
+      "additionalProperties": false,
+      "properties": {
+        "game_track_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "ID da pista no jogo",
+          "title": "Game Track Id"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "length_m": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Length M"
+        }
+      },
+      "required": [
+        "game_track_id"
+      ],
+      "title": "TrackRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "app": {
+      "$ref": "#/$defs/AppInfo"
+    },
+    "session": {
+      "$ref": "#/$defs/Session"
+    },
+    "laps": {
+      "items": {
+        "$ref": "#/$defs/Lap"
+      },
+      "title": "Laps",
+      "type": "array"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "title": "Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "app",
+    "session",
+    "created_at"
+  ],
+  "title": "TelemetryBundle",
+  "type": "object"
+}

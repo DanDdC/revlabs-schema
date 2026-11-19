@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "game": "gt7",
+  "track": {
+    "game_track_id": 152,
+    "name": "Autódromo José Carlos Pace (Interlagos)",
+    "length_m": 100
+  },
+  "version": 1,
+  "source": "telemetry",
+  "license": "original",
+  "length_m": 100,
+  "closed": true,
+  "start_finish": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "distance_m": 0
+  },
+  "sector_markers_m": [33.3, 66.6],
+  "points": [
+    { "x": 0, "y": 0, "z": 0, "distance_m": 0 },
+    { "x": 20, "y": 0, "z": 10, "distance_m": 25 },
+    { "x": 40, "y": 0, "z": 30, "distance_m": 50 },
+    { "x": 60, "y": 0, "z": 10, "distance_m": 75 },
+    { "x": 0, "y": 0, "z": 0, "distance_m": 100 }
+  ],
+  "coordinate_system": "game",
+  "transform": {
+    "rotation_deg": 0,
+    "scale": 1,
+    "offset_x": 0,
+    "offset_z": 0
+  },
+  "svg_view_box": "0 0 100 100",
+  "svg_path": "M 0 0 L 20 10 L 40 30 L 60 10 L 0 0",
+  "created_at": "2026-11-19T15:00:00Z"
+}

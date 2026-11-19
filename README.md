@@ -15,28 +15,31 @@ Este repositório define, valida e versiona os formatos usados por:
 - fixtures e testes de contrato
 - versionamento semântico
 
-## Estrutura planejada
+## Estrutura
 
 ```
 schema/v1/
   telemetry.schema.json
   track-geometry.schema.json
-  examples/
 src/revlabs_schema/
 bindings/
+examples/
 tests/
 docs/
+scripts/
 CHANGELOG.md
 ```
 
-## Versionamento
+## Uso
 
-- `v1.0.0`: primeira versão estável
-- mudança compatível: `v1.1.0`
-- mudança incompatível: `v2.0.0`
+```bash
+uv venv .venv
+uv pip install --python .venv/Scripts/python.exe -e ".[dev]"
+.venv/Scripts/python.exe scripts/export_schema.py
+.venv/Scripts/python.exe -m pytest -q
+```
 
-Os consumidores fixam uma tag. O servidor aceita a versão atual e, durante
-migração, a anterior.
+Em Linux/macOS, use `.venv/bin/python`.
 
 ## Licença
 

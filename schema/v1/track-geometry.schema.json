@@ -1,0 +1,246 @@
+{
+  "$defs": {
+    "TrackPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "default": 0.0,
+          "title": "Y",
+          "type": "number"
+        },
+        "z": {
+          "title": "Z",
+          "type": "number"
+        },
+        "distance_m": {
+          "minimum": 0,
+          "title": "Distance M",
+          "type": "number"
+        },
+        "curvature": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Curvature"
+        }
+      },
+      "required": [
+        "x",
+        "z",
+        "distance_m"
+      ],
+      "title": "TrackPoint",
+      "type": "object"
+    },
+    "TrackRef": {
+      "additionalProperties": false,
+      "properties": {
+        "game_track_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "ID da pista no jogo",
+          "title": "Game Track Id"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "length_m": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Length M"
+        }
+      },
+      "required": [
+        "game_track_id"
+      ],
+      "title": "TrackRef",
+      "type": "object"
+    },
+    "Transform": {
+      "additionalProperties": false,
+      "properties": {
+        "rotation_deg": {
+          "default": 0.0,
+          "title": "Rotation Deg",
+          "type": "number"
+        },
+        "scale": {
+          "default": 1.0,
+          "exclusiveMinimum": 0,
+          "title": "Scale",
+          "type": "number"
+        },
+        "offset_x": {
+          "default": 0.0,
+          "title": "Offset X",
+          "type": "number"
+        },
+        "offset_z": {
+          "default": 0.0,
+          "title": "Offset Z",
+          "type": "number"
+        }
+      },
+      "title": "Transform",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "game": {
+      "enum": [
+        "gt7",
+        "ac",
+        "other"
+      ],
+      "title": "Game",
+      "type": "string"
+    },
+    "track": {
+      "$ref": "#/$defs/TrackRef"
+    },
+    "version": {
+      "default": 1,
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "source": {
+      "default": "telemetry",
+      "enum": [
+        "telemetry",
+        "manual",
+        "osm"
+      ],
+      "title": "Source",
+      "type": "string"
+    },
+    "license": {
+      "default": "original",
+      "maxLength": 100,
+      "title": "License",
+      "type": "string"
+    },
+    "length_m": {
+      "exclusiveMinimum": 0,
+      "title": "Length M",
+      "type": "number"
+    },
+    "closed": {
+      "default": true,
+      "title": "Closed",
+      "type": "boolean"
+    },
+    "start_finish": {
+      "$ref": "#/$defs/TrackPoint"
+    },
+    "sector_markers_m": {
+      "description": "Distâncias acumuladas dos fins dos setores 1 e 2",
+      "items": {
+        "type": "number"
+      },
+      "maxItems": 2,
+      "minItems": 0,
+      "title": "Sector Markers M",
+      "type": "array"
+    },
+    "points": {
+      "items": {
+        "$ref": "#/$defs/TrackPoint"
+      },
+      "minItems": 3,
+      "title": "Points",
+      "type": "array"
+    },
+    "coordinate_system": {
+      "default": "game",
+      "maxLength": 50,
+      "title": "Coordinate System",
+      "type": "string"
+    },
+    "transform": {
+      "$ref": "#/$defs/Transform"
+    },
+    "svg_view_box": {
+      "anyOf": [
+        {
+          "maxLength": 100,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Svg View Box"
+    },
+    "svg_path": {
+      "anyOf": [
+        {
+          "maxLength": 200000,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Svg Path"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "game",
+    "track",
+    "length_m",
+    "start_finish",
+    "points",
+    "created_at"
+  ],
+  "title": "TrackGeometry",
+  "type": "object"
+}
